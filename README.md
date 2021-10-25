@@ -1,7 +1,4 @@
-## RAILS CRUD
-
-L'une des particularités de Rails est le fait que nous pouvons générer à la fois des contrôleurs et des modèles avec un générateur via votre terminal
-
+## RAILS CRUD cheatseets
 
 ### Generate
 ```console
@@ -9,18 +6,11 @@ L'une des particularités de Rails est le fait que nous pouvons générer à la 
 ```
 
 ### Destroy 
-
 ```console
   rails destroy controller pages
 ```
 
-Nous avons auparavant créer des tableaux sur ActiveRecord ainsi que leurs timestamps
-
-Exemple : 
-```console
- rake db:timestamps
-```
-
+### Generate a model
 
 ```console
 rails generate model Restaurant name:string rating:integer
@@ -33,23 +23,13 @@ rails generate model Restaurant name:string rating:integer
 ```
 
 
-
-Migration 
+### Migration 
 
 ```console
  rails db:migrate
 ```
 
-
-then git 
-
-```console
-git status
-git add .
-git commit -m "Add restaurant model"
-```
-
-
+### Add a column to your table
 
 ```console
 rails g migration AddAddressToRestaurants 
@@ -66,13 +46,7 @@ class AddAddressToRestaurants < ActiveRecord::Migration[6.1]
 end
 ```
 
-```console
-git status
-git add .
-git commit -m "Add address to Restaurant model"
-```
-
-Use of rails console 
+### Rails console
 
 ```console
 rails console
@@ -85,7 +59,7 @@ rails c
 ```
 
 
-Get all restaurants model :
+### Get all restaurants through your console :
 
 ```console
 irb(main):003:0> Restaurant.all
@@ -95,8 +69,8 @@ irb(main):003:0> Restaurant.all
 irb(main):004:0> 
 ```
 
-
-No need to restart the console, you can do ```reload!``` inside your console
+### Reload !
+No need to restart the console for any upcoming changes or updates in your app, you can do ```reload!``` inside your rails console
 
 ```console
 irb(main):004:0> reload!
@@ -105,13 +79,9 @@ Reloading...
 irb(main):005:0> 
 ```
 
-and exit to get out of your console
+### Sandbox
 
-```console
-irb(main):005:0> exit
-➜  rails_crud_activerecord git:(master) ✗ 
-```
-
+Sandbox helps you to create fictional data for testing, everything is erased once you exit your rails console. 
 
 ```console
 rails console --sandbox
@@ -132,11 +102,10 @@ irb(main):002:0>
 
 ## CRUD ACTIONS
 
-
-
-#Get all restaurants 
-
+### Get INDEX
 ```ruby
+
+**Routes**
 
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
@@ -145,7 +114,7 @@ end
 
 ```
 
-we have to generate the controller 
+**Generate controller**
 
 ```console 
 rails g controller restaurants
@@ -163,13 +132,7 @@ Running via Spring preloader in process 39695
       create      app/assets/stylesheets/restaurants.scss
 ```
 
-
-
-#Get all the restaurants 
-
-
-#controller 
-
+**Controller**
 
 ```ruby 
 class RestaurantsController < ApplicationController
@@ -179,7 +142,7 @@ class RestaurantsController < ApplicationController
 end
 ```
 
-
+**View of INDEX**
 ```ruby
 <!-- app/views/restaurants/index.html.erb -->
 <ul>
@@ -190,25 +153,27 @@ end
 ```
 
 
-#get One restaurant
+# get SHOW
 
+**Routes**
 ```ruby
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  get 'restaurants', to: "restaurants#index"
   get 'restaurants/:id', to: "restaurants#show", as: :restaurant
 end
 ```
 
-let's check out our rails routes 
+**Controller**
 
-```console
-rails routes
-     Prefix Verb URI Pattern                Controller#Action
-restaurants GET  /restaurants(.:format)     restaurants#index
- restaurant GET  /restaurants/:id(.:format) restaurants#show
+```ruby
+class RestaurantsController < ApplicationController
+    def show
+        @restaurant = Restaurant.find(params[:id])
+    end
+end
 ```
 
+**View**
 
 ```ruby
 <!-- app/views/restaurants/show.html.erb -->
@@ -219,40 +184,29 @@ restaurants GET  /restaurants(.:format)     restaurants#index
 
 
 
-NEW RESTAURANT 
+# get Restaurant for a new restaurant
 
-Defining the routes 
+
 
 ```ruby
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  get 'restaurants', to: "restaurants#index"
-  get 'restaurants/:id', to: "restaurants#show", as: :restaurant
   get 'restaurant/new', to: "restaurants#new", as: :new_restaurant
 end
 
 ```
 
-controller 
+**Controller**
 
 ```ruby
 class RestaurantsController < ApplicationController
-
-    def index
-        @restaurants = Restaurant.all
-    end
-
-    def show 
-        @restaurant = Restaurant.find(params[:id]) #this is for the form_for 
-    end
-
     def new 
         @restaurant = Restaurant.new 
     end
 end
 ```
 
-view 
+**View**
 
 ```ruby
 <%= form_for(@restaurant) do |f| %>
@@ -266,13 +220,3 @@ view
 <% end %>
 ```
 
-
-#strong params 
-
-```console
-rails routes
-        Prefix Verb URI Pattern                Controller#Action
-   restaurants GET  /restaurants(.:format)     restaurants#index
-    restaurant GET  /restaurants/:id(.:format) restaurants#show
-new_restaurant GET  /restaurant/new(.:format)  restaurants#new
-```
