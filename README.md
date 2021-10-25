@@ -1,16 +1,28 @@
 ## RAILS CRUD
 
-L'une des particularités de Rails est le fait que nous pouvons générer à la fois des contrôleurs et des modèles qui inclut les spécificités + type de données des colonnes.
+L'une des particularités de Rails est le fait que nous pouvons générer à la fois des contrôleurs et des modèles avec un générateur via votre terminal
+
+
+### Generate
+```console
+  rails generate controller pages
+```
+
+### Destroy 
+
+```console
+  rails destroy controller pages
+```
 
 Nous avons auparavant créer des tableaux sur ActiveRecord ainsi que leurs timestamps
 
 Exemple : 
-```bash
+```console
  rake db:timestamps
 ```
 
 
-```bash
+```console
 rails generate model Restaurant name:string rating:integer
   invoke  active_record
       create    db/migrate/20211025184841_create_restaurants.rb
@@ -22,17 +34,16 @@ rails generate model Restaurant name:string rating:integer
 
 
 
-
 Migration 
 
-```bash
+```console
  rails db:migrate
 ```
 
 
 then git 
 
-```bash
+```console
 git status
 git add .
 git commit -m "Add restaurant model"
@@ -40,7 +51,7 @@ git commit -m "Add restaurant model"
 
 
 
-```bash
+```console
 rails g migration AddAddressToRestaurants 
       invoke  active_record
       create    db/migrate/20211025185010_add_address_to_restaurants.rb
@@ -55,7 +66,7 @@ class AddAddressToRestaurants < ActiveRecord::Migration[6.1]
 end
 ```
 
-```bash
+```console
 git status
 git add .
 git commit -m "Add address to Restaurant model"
@@ -63,20 +74,20 @@ git commit -m "Add address to Restaurant model"
 
 Use of rails console 
 
-```bash
+```console
 rails console
 ```
 
 or 
 
-```bash
+```console
 rails c 
 ```
 
 
 Get all restaurants model :
 
-```bash
+```console
 irb(main):003:0> Restaurant.all
    (1.0ms)  SELECT sqlite_version(*)
   Restaurant Load (0.5ms)  SELECT "restaurants".* FROM "restaurants" /* loading for inspect */ LIMIT ?  [["LIMIT", 11]]
@@ -87,7 +98,7 @@ irb(main):004:0>
 
 No need to restart the console, you can do ```reload!``` inside your console
 
-```bash
+```console
 irb(main):004:0> reload!
 Reloading...
 => true
@@ -96,17 +107,17 @@ irb(main):005:0>
 
 and exit to get out of your console
 
-```bash
+```console
 irb(main):005:0> exit
 ➜  rails_crud_activerecord git:(master) ✗ 
 ```
 
 
-```bash
+```console
 rails console --sandbox
 ```
 
-```bash
+```console
 irb(main):001:0> Restaurant.create(name:'Casa jose', rating: 5, address: 'Casa')
    (0.9ms)  SELECT sqlite_version(*)
   TRANSACTION (0.1ms)  begin transaction
@@ -136,7 +147,7 @@ end
 
 we have to generate the controller 
 
-```bash 
+```console 
 rails g controller restaurants
 Running via Spring preloader in process 39695
       create  app/controllers/restaurants_controller.rb
@@ -191,7 +202,7 @@ end
 
 let's check out our rails routes 
 
-```bash
+```console
 rails routes
      Prefix Verb URI Pattern                Controller#Action
 restaurants GET  /restaurants(.:format)     restaurants#index
@@ -204,4 +215,64 @@ restaurants GET  /restaurants(.:format)     restaurants#index
 <h2><%= @restaurant.name %></h2>
 <p><%= @restaurant.address %></p>
 <p><%= @restaurant.rating %></p>
+```
+
+
+
+NEW RESTAURANT 
+
+Defining the routes 
+
+```ruby
+Rails.application.routes.draw do
+  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  get 'restaurants', to: "restaurants#index"
+  get 'restaurants/:id', to: "restaurants#show", as: :restaurant
+  get 'restaurant/new', to: "restaurants#new", as: :new_restaurant
+end
+
+```
+
+controller 
+
+```ruby
+class RestaurantsController < ApplicationController
+
+    def index
+        @restaurants = Restaurant.all
+    end
+
+    def show 
+        @restaurant = Restaurant.find(params[:id]) #this is for the form_for 
+    end
+
+    def new 
+        @restaurant = Restaurant.new 
+    end
+end
+```
+
+view 
+
+```ruby
+<%= form_for(@restaurant) do |f| %>
+    <%= f.label :name%>
+    <%= f.text_field :name%>
+    <%= f.label :address %>
+    <%= f.text_field :address%>
+    <%= f.label :rating%>
+    <%= f.number_field :rating%>
+    <%= f.submit%>
+<% end %>
+```
+
+
+#strong params 
+
+```console
+rails routes
+        Prefix Verb URI Pattern                Controller#Action
+   restaurants GET  /restaurants(.:format)     restaurants#index
+    restaurant GET  /restaurants/:id(.:format) restaurants#show
+new_restaurant GET  /restaurant/new(.:format)  restaurants#new
 ```
