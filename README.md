@@ -21,8 +21,36 @@ rails generate model Restaurant name:string rating:integer
 ```
 
 
+
+
 Migration 
 
 ```bash
  rails db:migrate
+```
+
+
+then git 
+
+```bash
+git status
+git add .
+git commit -m "Add restaurant model"
+```
+
+
+
+```bash
+rails g migration AddAddressToRestaurants 
+      invoke  active_record
+      create    db/migrate/20211025185010_add_address_to_restaurants.rb
+```
+
+```ruby
+#/db/migrate/20211025185010_add_address_to_restaurants.rb
+class AddAddressToRestaurants < ActiveRecord::Migration[6.1]
+  def change
+    add_column :restaurants, :address, :string
+  end
+end
 ```
