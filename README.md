@@ -1,4 +1,4 @@
-## RAILS CRUD cheatseets
+## RAILS CRUD cheatseets :rocket:
 
 
 ### Generate a controller 
@@ -190,7 +190,6 @@ end
 ```ruby
 <!-- app/views/restaurants/show.html.erb -->
 <h2><%= @restaurant.name %></h2>
-<p><%= @restaurant.address %></p>
 <p><%= @restaurant.rating %></p>
 ```
 
