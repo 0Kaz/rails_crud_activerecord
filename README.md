@@ -397,6 +397,14 @@ When you try to fill a form and submit it with a post method, you might have thi
     end
 ```
 
+Check out what you will get once you use ```raise``` in your create action :
+
+[Fail params](https://res.cloudinary.com/kzkjr/image/upload/v1635251480/blogging/Capture_d_e%CC%81cran_2021-10-26_a%CC%80_13.26.44.png)
+
+
+We want these params to be permitted to be created in our DB. ```The solution is to use strong_params```
+
+[Pass params](https://res.cloudinary.com/kzkjr/image/upload/v1635251480/blogging/Capture_d_e%CC%81cran_2021-10-26_a%CC%80_13.27.23.png)
 
 ```ruby 
    def restaurant_params
