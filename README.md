@@ -102,7 +102,7 @@ irb(main):002:0>
 
 ## CRUD ACTIONS
 
-### Get INDEX
+### GET | INDEX
 ```ruby
 
 **Routes**
@@ -153,13 +153,15 @@ end
 ```
 
 
-# get SHOW
+### GET | SHOW
 
 **Routes**
 ```ruby
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+    #... other routes
   get 'restaurants/:id', to: "restaurants#show", as: :restaurant
+    #... other routes
 end
 ```
 
@@ -184,14 +186,14 @@ end
 
 
 
-# get Restaurant for a new restaurant
-
-
+### GET | NEW
 
 ```ruby
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+    #... other routes
   get 'restaurant/new', to: "restaurants#new", as: :new_restaurant
+    #... other routes
 end
 
 ```
@@ -220,3 +222,111 @@ end
 <% end %>
 ```
 
+### POST | CREATE
+
+**Routes**
+```ruby
+Rails.application.routes.draw do
+  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+    #... other routes
+  post 'restaurants', to: "restaurants#create"
+    #... other routes
+end
+
+```
+
+**Controller**
+
+```ruby
+    def create 
+        @restaurant = Restaurant.create(restaurant_params)
+        @restaurant.save
+        redirect_to restaurants_path
+    end
+```
+
+
+### GET | EDIT
+
+
+**Routes**
+```ruby
+Rails.application.routes.draw do
+  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+    #... other routes
+  get 'restaurants/:id/edit', to: 'restaurants#edit', as: :edit_restaurant
+    #... other routes
+end
+
+```
+
+**Controller**
+
+```ruby
+class RestaurantsController < ApplicationController
+    def edit
+        @restaurant = Restaurant.find(params[:id])
+    end
+end
+```
+
+**View**
+
+```ruby 
+#/app/views/restaurants/edit.html.erb
+<%= form_for(@restaurant) do |f| %>
+    <%= f.label :name%>
+    <%= f.text_field :name%>
+    <%= f.label :address %>
+    <%= f.text_field :address%>
+    <%= f.label :rating%>
+    <%= f.number_field :rating%>
+    <%= f.submit%>
+<% end %>
+```
+
+### PATCH | UPDATE
+
+**Routes**
+
+```ruby
+Rails.application.routes.draw do
+  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  #... other routes
+  patch 'restaurants/:id', to: 'restaurants#update'
+  #...other routes
+end
+```
+
+**Controller**
+
+```ruby
+   def update 
+        @restaurant = Restaurant.find(params[:id])
+        @restaurant.update(restaurant_params)
+        redirect_to restaurant_path(@restaurant)
+   end
+```
+
+### DELETE | DESTROY
+
+**Routes**
+
+```ruby
+Rails.application.routes.draw do
+  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  #... other routes
+  delete "restaurants/:id", to: "restaurants#destroy"
+  #...other routes
+end
+```
+
+**Controller**
+
+```ruby
+   def destroy
+        @restaurant = Restaurant.find(params[:id])
+        @restaurant.destroy 
+        redirect_to restaurants_path
+    end
+```
