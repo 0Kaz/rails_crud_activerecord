@@ -1,13 +1,10 @@
 ## RAILS CRUD cheatseets
 
-### Generate
+
+### Generate a controller 
+
 ```console
   rails generate controller pages
-```
-
-### Destroy 
-```console
-  rails destroy controller pages
 ```
 
 ### Generate a model
@@ -23,6 +20,12 @@ rails generate model Restaurant name:string rating:integer
 ```
 
 
+### Destroy a controller or model
+```console
+  rails destroy controller pages
+  rails destroy model page
+```
+
 ### Migration 
 
 ```console
@@ -32,9 +35,16 @@ rails generate model Restaurant name:string rating:integer
 ### Add a column to your table
 
 ```console
-rails g migration AddAddressToRestaurants 
+rails g migration AddAddressToRestaurants  address:string
       invoke  active_record
       create    db/migrate/20211025185010_add_address_to_restaurants.rb
+```
+
+### Drop a column from your table 
+```console
+rails g migration RemoveAddressFromRestaurants address:string
+      invoke  active_record
+      create    db/migrate/20211025185010_remove_address_from_restaurants.rb
 ```
 
 ```ruby
@@ -59,7 +69,7 @@ rails c
 ```
 
 
-### Get all restaurants through your console :
+### Get all restaurants through your Rails console :
 
 ```console
 irb(main):003:0> Restaurant.all
@@ -114,7 +124,7 @@ end
 
 ```
 
-**Generate controller**
+#### Generate controller
 
 ```console 
 rails g controller restaurants
@@ -142,7 +152,7 @@ class RestaurantsController < ApplicationController
 end
 ```
 
-**View of INDEX**
+**View**
 ```ruby
 <!-- app/views/restaurants/index.html.erb -->
 <ul>
@@ -329,4 +339,46 @@ end
         @restaurant.destroy 
         redirect_to restaurants_path
     end
+```
+
+
+## Why we don't use regular HTML Form Tags in Rails
+
+Regular HTML forms will caught us fetching each input params which can be tedious :
+
+```html
+<form action='/restaurants' method='post'>
+  <label for='name'></label>
+  <input type='text' name='name'/>
+  <label for='address'></label>
+  <input type='text' name='address'/>
+  <label for='rating'></label>
+  <input type='text' name='rating'/>
+  <input type='submit'/>
+</form>
+```
+
+```ruby
+params[:name]
+params[:address]
+#...etc 
+```
+
+**The solution is to use Rails form tags instead** 
+
+```ruby 
+<%= form_for(@restaurant) do |f| %>
+    <%= f.label :name%>
+    <%= f.text_field :name%>
+    <%= f.label :address %>
+    <%= f.text_field :address%>
+    <%= f.label :rating%>
+    <%= f.number_field :rating%>
+    <%= f.submit%>
+<% end %>
+ 
+```
+This will collect all our params into one : 
+```ruby 
+  params[:restaurant] #=> {name: name, address: address, rating: rating}
 ```
