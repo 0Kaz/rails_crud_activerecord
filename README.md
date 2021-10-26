@@ -483,6 +483,8 @@ and add this line on your ```application.scss```
 
 Link_to is an anchor element in Rails, the syntax is written as such: 
 
+
+**Syntax**
 ```console
   <%= link_to 'Text to display', your_rails_route_path, options%>
 ```
@@ -501,7 +503,7 @@ edit_restaurant GET    /restaurants/:id/edit(.:format) restaurants#edit
                 DELETE /restaurants/:id(.:format)      restaurants#destroy
 ```
 
-If i want the link to get me to the URI ```/restaurants(.:format) ```which is the ```prefix``` => ```restaurants```
+If we want the link to go to the  main URI ```/restaurants(.:format) ```which is the ```prefix``` => ```restaurants```
 
 All i need to do is : 
 
@@ -509,9 +511,31 @@ All i need to do is :
   <%= link_to 'All Restaurants', restaurants_path %>
 ```
 
-If i want the link to the new restaurant URI ```/restaurant/new(.:format)``` with the ```prefix``` => ```new_restaurant``` : 
+If we want the link to the new restaurant URI ```/restaurant/new(.:format)``` with the ```prefix``` => ```new_restaurant``` : 
 
 ```ruby
   <%= link_to 'New Restaurant', new_restaurant_path %>
 
+```
+
+Let's suppose you are in the index and you want to go to the ```show.html.erb``` to a specific ```id```
+
+```ruby
+<!-- app/views/restaurants/index.html.erb -->
+<ul>
+    <% @restaurants.each do |restaurant| %>
+      <li><%= link_to restaurant.name, restaurant_path(restaurant) %></li>
+    <% end %>
+</ul>
+```
+
+You can either specify *with or without* an ID between the parenthesis 
+
+**without id**
+```ruby 
+      <li><%= link_to restaurant.name, restaurant_path(restaurant) %></li>
+```
+**with id**
+```ruby
+      <li><%= link_to restaurant.name, restaurant_path(restaurant.id) %></li>
 ```
