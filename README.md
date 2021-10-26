@@ -13,7 +13,7 @@
       - [Reload!](#reload!)
       - [Sandbox](#sandbox)
  - [CRUD ACTIONS](#crud-actions)
-      - [GET | INDEX](#get-|-index)
+      - [GET | INDEX](#get--index)
       - [GET | SHOW](#get-|-show)
       - [GET | NEW](#get-|-new)
       - [POST | CREATE](#post-|-create)
@@ -428,7 +428,7 @@ We want these params to be permitted to be created in our DB. ```The solution is
 
 ![Pass params](https://res.cloudinary.com/kzkjr/image/upload/v1635251480/blogging/Capture_d_e%CC%81cran_2021-10-26_a%CC%80_13.27.23.png)
 
-### The solution is to use a Strong Params 
+*** The solution is to use a Strong Params ***
 
 ```ruby 
    def restaurant_params
