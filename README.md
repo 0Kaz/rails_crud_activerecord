@@ -382,3 +382,40 @@ This will collect all our params into one :
 ```ruby 
   params[:restaurant] #=> {name: name, address: address, rating: rating}
 ```
+
+
+## Strong Params
+
+When you try to fill a form and submit it with a post method, you might have this first thought to simply do something like this : 
+
+
+```ruby
+    def create 
+        @restaurant = Restaurant.create(params[:restaurant])
+        @restaurant.save
+        redirect_to restaurants_path
+    end
+```
+
+
+```ruby 
+   def restaurant_params
+        params.require(:restaurant).permit(:name, :address, :rating)
+    end
+
+```
+
+
+## simple_form
+
+First of all, you need to put the gem in your Gemfile in your rails app.
+
+```ruby
+gem 'simple_form'
+```
+
+then in your console, type this command to generate the installation of ```simple_form``` including bootstrap 
+
+```console
+rails generate simple_form:install --bootstrap
+```
