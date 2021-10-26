@@ -5,7 +5,7 @@
  - [ActiveRecord](#activerecord-rails)
       - [Generate a controller](#generate-a-controller)
       - [Generate a model](#generate-a-model)
-      - [Destroy a controller or a model](#destroy-a-controller-or-a-model)
+      - [Destroy a controller or a model](#Destroy-a-controller-or-model)
       - [Migration](#migration)
       - [Add a column to your table](#add-a-column-to-your-table)
       - [Drop a column from your table ](#drop-a-column-from-your-table)
