@@ -539,3 +539,16 @@ You can either specify *with or without* an ID between the parenthesis
 ```ruby
       <li><%= link_to restaurant.name, restaurant_path(restaurant.id) %></li>
 ```
+
+## partial forms 
+
+The *DRY* principle is part of rails doctrine, instead of having too many forms that are repeated in different ```html.erb``` files, we can use ```shared partials``` 
+
+Check out first how we name ```partials``` in your ```views``` folder : 
+
+
+``_form.html.erb```
+
+<p>
+<img src='https://res.cloudinary.com/kzkjr/image/upload/v1635260560/blogging/Capture_d_e%CC%81cran_2021-10-26_a%CC%80_15.58.08.png' width='200' height='400' style='text-align:center'>
+</p>
