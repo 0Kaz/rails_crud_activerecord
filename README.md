@@ -12,6 +12,15 @@
       - [Get all restaurants through your Rails console :](#get-all-restaurants-through-your-Rails-console)
       - [Reload!](#reload!)
       - [Sandbox](#sandbox)
+ - [CRUD ACTIONS](#crud-actions)
+      - [GET | INDEX](#get-|-index)
+      - [GET | SHOW](#get-|-show)
+      - [GET | NEW](#get-|-new)
+      - [POST | CREATE](#post-|-create)
+      - [GET | EDIT](#get-|-edit)
+      - [PATCH | UPDATE](#patch-|-updated)
+      - [DELETE | DESTROY](#delete-|-destroy)
+ - [Params and Forms](#params-and-forms)
 
 ## ActiveRecord Rails
 ### Generate a controller 
@@ -353,8 +362,9 @@ end
     end
 ```
 
+## Params and forms
 
-## Why we don't use regular HTML Form Tags in Rails
+### Why we don't use regular HTML Form Tags in Rails
 
 Regular HTML forms will caught us fetching each input params which can be tedious :
 
@@ -396,7 +406,7 @@ This will collect all our params into one :
 ```
 
 
-## Strong Params
+### Strong Params
 
 When you try to fill a form and submit it with a post method, you might have this first thought to simply do something like this : 
 
@@ -428,7 +438,7 @@ We want these params to be permitted to be created in our DB. ```The solution is
 ```
 
 
-## simple_form
+### simple_form
 
 First of all, you need to put the gem in your Gemfile in your rails app.
 
