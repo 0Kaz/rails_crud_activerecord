@@ -22,6 +22,7 @@
       - [DELETE | DESTROY](#delete--destroy)
  - [Params and Forms](#params-and-forms)
  - [Link_to](#link_to)
+ - [Partial Forms](#partial-forms)
 
 ## ActiveRecord Rails
 ### Generate a controller 
@@ -546,9 +547,24 @@ The *DRY* principle is part of rails doctrine, instead of having too many forms 
 
 Check out first how we name ```partials``` in your ```views``` folder : 
 
-
-``_form.html.erb```
-
-<p>
-<img src='https://res.cloudinary.com/kzkjr/image/upload/v1635260560/blogging/Capture_d_e%CC%81cran_2021-10-26_a%CC%80_15.58.08.png' width='200' height='400' style='text-align:center'>
+<p style='text-align:center'>
+<img src='https://res.cloudinary.com/kzkjr/image/upload/v1635260560/blogging/Capture_d_e%CC%81cran_2021-10-26_a%CC%80_15.58.08.png' width='400' height='200' style='text-align:center'>
 </p>
+
+```_form.html.erb``` 
+
+```ruby
+<%= form_for(restaurant) do |f| %>
+  First name: <%= f.text_field :name %><br />
+  Last name : <%= f.number_field :rating %><br />
+  <%= f.submit %>
+<% end %>
+```
+
+In order to *render* this form in the targeted ```html.erb```, all you need is to write this: 
+
+```ruby
+#app/views/restaurants/edit.html.erb
+<%= render "form", restaurant: @restaurant %>
+```
+
