@@ -14,12 +14,12 @@
       - [Sandbox](#sandbox)
  - [CRUD ACTIONS](#crud-actions)
       - [GET | INDEX](#get--index)
-      - [GET | SHOW](#get-|-show)
-      - [GET | NEW](#get-|-new)
-      - [POST | CREATE](#post-|-create)
-      - [GET | EDIT](#get-|-edit)
-      - [PATCH | UPDATE](#patch-|-updated)
-      - [DELETE | DESTROY](#delete-|-destroy)
+      - [GET | SHOW](#get--show)
+      - [GET | NEW](#get--new)
+      - [POST | CREATE](#post--create)
+      - [GET | EDIT](#get--edit)
+      - [PATCH | UPDATE](#patch--updated)
+      - [DELETE | DESTROY](#delete--destroy)
  - [Params and Forms](#params-and-forms)
 
 ## ActiveRecord Rails
