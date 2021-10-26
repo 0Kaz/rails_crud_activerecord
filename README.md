@@ -3,15 +3,15 @@
 
 *Summary:*
  - [ActiveRecord](#activerecord-rails)
-       - [Generate a controller](#generate-a-controller)
-       - [Generate a model](#generate-a-model)
-       - [Destroy a controller or a model](#destroy-a-controller-or-a-model)
-       - [Migration](#migration)
-       - [Add a column to your table](#add-a-column-to-your-table)
-       - [Drop a column from your table ](#drop-a-column-from-your-table)
-       - [Get all restaurants through your Rails console :](#get-all-restaurants-through-your-Rails-console)
-       - [Reload!](#reload!)
-       - [Sandbox](#sandbox)
+      - [Generate a controller](#generate-a-controller)
+      - [Generate a model](#generate-a-model)
+      - [Destroy a controller or a model](#destroy-a-controller-or-a-model)
+      - [Migration](#migration)
+      - [Add a column to your table](#add-a-column-to-your-table)
+      - [Drop a column from your table ](#drop-a-column-from-your-table)
+      - [Get all restaurants through your Rails console :](#get-all-restaurants-through-your-Rails-console)
+      - [Reload!](#reload!)
+      - [Sandbox](#sandbox)
 
 ## ActiveRecord Rails
 ### Generate a controller 
