@@ -568,3 +568,4 @@ In order to *render* this form in the targeted ```html.erb```, all you need is t
 <%= render "form", restaurant: @restaurant %>
 ```
 
+***REMEMBER*** you can name the partials with any name, Rails identify view partials with the underscore in your view folder ```_mypartial.html.erb```
