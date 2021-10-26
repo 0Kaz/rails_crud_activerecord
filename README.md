@@ -419,3 +419,30 @@ then in your console, type this command to generate the installation of ```simpl
 ```console
 rails generate simple_form:install --bootstrap
 ```
+
+and use the ```simple_form``` instead of a regular ```form_for```
+
+```ruby 
+<%= simple_form_for(restaurant) do |f| %>
+  <%= f.input :name %>
+  <%= f.input :rating %>
+  <%= f.submit %>
+<% end %>
+```
+
+
+### Bootstrap 
+
+You can install bootstrap through yarn instead of adding it on your Gemfile 
+
+```console
+yarn add bootstrap
+```
+
+Then you'll have to rename this file on ```app/assets/stylesheets/application.css``` into ```app/assets/stylesheets/application.scss```
+
+and add this line on your ```application.scss```
+
+```scss
+ @import "bootstrap/scss/bootstrap";
+```
