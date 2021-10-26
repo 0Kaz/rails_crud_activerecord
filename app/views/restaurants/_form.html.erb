@@ -1,5 +1,11 @@
-<%= simple_form_for(restaurant) do |f| %>
+<!-- <%= simple_form_for(restaurant) do |f| %>
   <%= f.input :name %>
   <%= f.input :rating %>
+  <%= f.submit %>
+<% end %> -->
+
+<%= form_for restaurant do |f| %>
+  First name: <%= f.text_field :name %><br />
+  Last name : <%= f.number_field :rating %><br />
   <%= f.submit %>
 <% end %>

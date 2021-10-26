@@ -21,6 +21,7 @@
       - [PATCH | UPDATE](#patch--updated)
       - [DELETE | DESTROY](#delete--destroy)
  - [Params and Forms](#params-and-forms)
+ - [Link_to](#link_to)
 
 ## ActiveRecord Rails
 ### Generate a controller 
@@ -437,7 +438,6 @@ We want these params to be permitted to be created in our DB. ```The solution is
 
 ```
 
-
 ### simple_form
 
 First of all, you need to put the gem in your Gemfile in your rails app.
@@ -477,4 +477,41 @@ and add this line on your ```application.scss```
 
 ```scss
  @import "bootstrap/scss/bootstrap";
+```
+
+## link_to
+
+Link_to is an anchor element in Rails, the syntax is written as such: 
+
+```console
+  <%= link_to 'Text to display', your_rails_route_path, options%>
+```
+
+Let's get our ```rails routes``` first to get all our prefixes
+
+```console
+> rails routes
+         Prefix Verb   URI Pattern                     Controller#Action
+    restaurants GET    /restaurants(.:format)          restaurants#index
+ new_restaurant GET    /restaurant/new(.:format)       restaurants#new
+     restaurant GET    /restaurants/:id(.:format)      restaurants#show
+edit_restaurant GET    /restaurants/:id/edit(.:format) restaurants#edit
+                POST   /restaurants(.:format)          restaurants#create
+                PATCH  /restaurants/:id(.:format)      restaurants#update
+                DELETE /restaurants/:id(.:format)      restaurants#destroy
+```
+
+If i want the link to get me to the URI ```/restaurants(.:format) ```which is the ```prefix``` => ```restaurants```
+
+All i need to do is : 
+
+```ruby
+  <%= link_to 'All Restaurants', restaurants_path %>
+```
+
+If i want the link to the new restaurant URI ```/restaurant/new(.:format)``` with the ```prefix``` => ```new_restaurant``` : 
+
+```ruby
+  <%= link_to 'New Restaurant', new_restaurant_path %>
+
 ```
